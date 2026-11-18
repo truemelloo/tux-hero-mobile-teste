@@ -1,0 +1,158 @@
+/* TUX HERO — estilos exclusivos de celulares/tablets.
+ * TODA regra está sob `html.tux-mobile` (classe adicionada por lib/tux-mobile.js só em aparelhos touch).
+ * No computador nada daqui se aplica: a versão desktop permanece idêntica. */
+
+/* ---------- base ---------- */
+html.tux-mobile, html.tux-mobile body { -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; overscroll-behavior: none; touch-action: manipulation; -webkit-text-size-adjust: 100%; }
+html.tux-mobile body { -webkit-user-select: none; user-select: none; }
+html.tux-mobile input, html.tux-mobile textarea { -webkit-user-select: text; user-select: text; }
+html.tux-mobile.tux-playing, html.tux-mobile.tux-playing body { touch-action: none; }
+html.tux-mobile #game-canvas { width: 100%; height: 100%; }
+html.tux-mobile .screen { box-sizing: border-box; padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+html.tux-mobile button, html.tux-mobile .menu-option { touch-action: manipulation; }
+
+/* ---------- abertura ---------- */
+html.tux-mobile .intro-skip { top: calc(14px + env(safe-area-inset-top)); right: calc(16px + env(safe-area-inset-right)); }
+html.tux-mobile .intro-bottom { bottom: max(4%, env(safe-area-inset-bottom)); }
+html.tux-mobile .intro-bottom strong { font-size: 28px; }
+
+/* ---------- menu principal: paisagem (tela baixa) = logotipo à esquerda, opções à direita ---------- */
+@media (orientation: landscape) {
+  html.tux-mobile .menu-screen { display: grid; grid-template-columns: minmax(0, 42%) minmax(0, 1fr); align-items: center; }
+  html.tux-mobile .menu-screen .menu-backdrop { background: linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.7) 100%); }
+  html.tux-mobile .menu-screen .menu-logo { grid-column: 1; grid-row: 1; width: 92%; height: auto; max-height: 78vh; margin: 0 0 0 4%; align-self: center; justify-self: center; }
+  html.tux-mobile .menu-screen .menu-layout { grid-column: 2; grid-row: 1; height: auto; min-height: 0; padding: 0 4% 0 0; justify-content: center; }
+  html.tux-mobile .menu-screen .main-menu { width: min(100%, 380px); gap: max(3px, 1.2vh); }
+  html.tux-mobile .menu-screen .menu-option { font-size: clamp(16px, 5.6vh, 25px); padding: clamp(5px, 1.9vh, 11px) 16px; min-height: 36px; }
+  html.tux-mobile .menu-screen footer { bottom: max(4px, env(safe-area-inset-bottom)); left: calc(14px + env(safe-area-inset-left)); right: calc(14px + env(safe-area-inset-right)); font-size: 8px; letter-spacing: 1px; }
+}
+/* retrato (menu navegável com o celular na vertical) */
+@media (orientation: portrait) {
+  html.tux-mobile .menu-screen .menu-logo { width: min(74vw, 420px); height: auto; max-height: 24vh; margin: 3vh auto 0; }
+  html.tux-mobile .menu-screen .menu-layout { height: auto; min-height: 0; padding: 2vh 0 0; justify-content: center; }
+  html.tux-mobile .menu-screen .main-menu { width: min(86vw, 420px); gap: 6px; }
+  html.tux-mobile .menu-screen .menu-option { font-size: clamp(19px, 5.2vw, 26px); padding: 11px 18px; min-height: 46px; }
+  html.tux-mobile .menu-screen footer { font-size: 8px; left: 12px; right: 12px; bottom: max(8px, env(safe-area-inset-bottom)); display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+  html.tux-mobile .menu-screen footer span { position: static; }
+}
+html.tux-mobile .menu-option:hover, html.tux-mobile .menu-option.selected { transform: skewX(-5deg); }
+
+/* ---------- sub-telas (músicas, carreira, configurações, créditos) ---------- */
+html.tux-mobile .sub-screen { align-items: stretch; justify-items: center; }
+html.tux-mobile .sub-panel { width: min(760px, 100%); max-height: 100%; box-sizing: border-box; padding: 12px 14px calc(14px + env(safe-area-inset-bottom)); -webkit-overflow-scrolling: touch; }
+html.tux-mobile .sub-panel h1 { font-size: clamp(24px, 6vw, 34px); margin: 6px 0 12px; }
+html.tux-mobile .sub-panel h2 { font-size: 20px; }
+html.tux-mobile .sub-panel button, html.tux-mobile .sub-panel select, html.tux-mobile .sub-panel input { min-height: 40px; margin: 4px 3px; font-size: 16px; }
+html.tux-mobile .sub-panel .back-button { font-size: 13px; padding: 8px 12px; }
+html.tux-mobile .song-card { padding: 11px; }
+html.tux-mobile .song-card button { font-size: 13px; padding: 8px 10px; }
+html.tux-mobile .song-toolbar input { min-width: 0; flex: 1 1 140px; }
+html.tux-mobile .song-tabs button { flex: 1 1 auto; font-size: 12px; padding: 8px 6px; }
+html.tux-mobile .setting-row { gap: 10px; }
+html.tux-mobile .setting-row input[type=range] { flex: 1; max-width: 55%; }
+html.tux-mobile .setting-row input[type=checkbox] { min-height: 0; width: 24px; height: 24px; }
+
+/* ---------- Jogo Rápido (motor original): HUD compacto, guitarra e botões livres ---------- */
+html.tux-mobile #game-canvas .game-display .header { background: none; border: 0; height: 0; padding: 0; pointer-events: none; }
+html.tux-mobile #game-canvas .game-display .header .title { position: absolute; left: calc(8px + var(--tux-sl, 0px)); top: calc(4px + var(--tux-st, 0px)); margin: 0 !important; max-width: 92px; height: 34px; }
+html.tux-mobile #game-canvas .game-display .professional-links { display: none; }
+html.tux-mobile #game-canvas .game-display .game-details { position: absolute; inset: 0; padding: 0 !important; display: block; pointer-events: none; }
+html.tux-mobile #game-canvas .game-display .game-details-left,
+html.tux-mobile #game-canvas .game-display .game-details-right { position: absolute; box-sizing: border-box; width: calc((100% - var(--tux-board-w, 60vw)) / 2 - 14px); min-width: 108px; max-width: 190px; min-height: 0; height: auto; padding: 6px 9px; border-radius: 9px; max-width: 190px; }
+html.tux-mobile #game-canvas .game-display .game-details-left { left: calc(8px + var(--tux-sl, 0px)); top: calc(44px + var(--tux-st, 0px)); }
+html.tux-mobile #game-canvas .game-display .game-details-right { left: auto; right: calc(8px + var(--tux-sr, 0px)); top: calc(70px + var(--tux-st, 0px)); }
+html.tux-mobile #game-canvas .game-display .game-details h1 { font-size: 12px; margin: 2px 0; line-height: 1.2; }
+html.tux-mobile #game-canvas .game-display .game-details h1.score { font-size: 15px; }
+html.tux-mobile #game-canvas .game-display .game-progress { right: calc(10px + var(--tux-sr, 0px)) !important; bottom: auto !important; top: calc(var(--tux-hit-y, 60vh) - 40px) !important; width: 76px !important; height: 76px !important; min-width: 0 !important; min-height: 0 !important; }
+html.tux-mobile #game-canvas .game-display .game-progress #powermusic-sprite { width: 76px; height: 76px; }
+/* controles ao vivo viram ícones redondos no canto superior direito */
+html.tux-mobile #game-canvas .game-control-panel { top: calc(6px + var(--tux-st, 0px)); bottom: auto; left: auto; right: calc(8px + var(--tux-sr, 0px)); width: auto; flex-direction: row; gap: 6px; padding: 5px; border-radius: 12px; }
+html.tux-mobile #game-canvas .game-control-panel .control-caption,
+html.tux-mobile #game-canvas .game-control-panel .look-around { display: none !important; }
+html.tux-mobile #game-canvas .game-control-panel button { width: 42px; min-height: 42px; height: 42px; padding: 0; justify-content: center; font-size: 0; gap: 0; }
+html.tux-mobile #game-canvas .game-control-panel button:before { width: 30px; height: 30px; font-size: 17px; }
+html.tux-mobile #game-canvas .game-control-panel button:hover { transform: none; }
+html.tux-mobile #game-canvas .tux-quick-toast, html.tux-mobile .tux-quick-toast { top: 34%; font-size: 26px; }
+html.tux-mobile .lane-hit { display: none; }
+html.tux-mobile .tux-countdown { font-size: 64px; }
+
+/* ---------- 3D unificado (músicas da biblioteca / importadas): HUD lateral ---------- */
+html.tux-mobile #tux-unified-game .unified-hud { min-height: 0; height: calc(38px + env(safe-area-inset-top)); padding: env(safe-area-inset-top) calc(8px + env(safe-area-inset-right)) 0 calc(8px + env(safe-area-inset-left)); gap: 8px; background: linear-gradient(180deg, #0a0614d9, #0a061400); }
+html.tux-mobile #tux-unified-game .unified-hud img { width: auto; height: 30px; max-height: 30px; top: calc(4px + env(safe-area-inset-top)); }
+html.tux-mobile #tux-unified-game #unified-track { left: calc(10px + env(safe-area-inset-left)); top: calc(10px + env(safe-area-inset-top)); max-width: 28%; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html.tux-mobile #tux-unified-game #unified-pause { right: calc(8px + env(safe-area-inset-right)); top: calc(5px + env(safe-area-inset-top)); width: 44px; height: 32px; padding: 0; font-size: 0; display: grid; place-items: center; }
+html.tux-mobile #tux-unified-game #unified-pause:before { content: 'Ⅱ'; font-size: 17px; }
+html.tux-mobile #tux-unified-game .tux-m-mute { position: absolute; right: calc(60px + env(safe-area-inset-right)); top: calc(5px + env(safe-area-inset-top)); width: 44px; height: 32px; padding: 0; font-size: 0; display: grid; place-items: center; }
+html.tux-mobile #tux-unified-game .tux-m-mute:before { content: '♫'; font-size: 17px; }
+html.tux-mobile #tux-unified-game .tux-m-mute.off:before { content: '×'; font-size: 22px; }
+/* painel nativo vira só uma âncora para os avisos (acertos/multiplicador); o cartão compacto mostra os números */
+html.tux-mobile #tux-unified-game .unified-player .unified-name,
+html.tux-mobile #tux-unified-game .unified-player .unified-stats,
+html.tux-mobile #tux-unified-game .unified-player .unified-detail { display: none; }
+html.tux-mobile #tux-unified-game .unified-toast { font-size: 24px; }
+html.tux-mobile .tux-m-card { position: absolute; z-index: 3; left: calc(10px + env(safe-area-inset-left)); top: calc(46px + env(safe-area-inset-top)); width: auto; min-width: 112px; max-width: 190px; white-space: nowrap; box-sizing: border-box; padding: 7px 10px 8px; border: 1px solid #a76ac9; border-radius: 10px; background: linear-gradient(160deg, #3e2355d9, #0e091bdd 70%); box-shadow: 0 3px 0 #090410, 0 0 14px #a250c344; text-shadow: 1px 1px 3px #000; pointer-events: none; display: flex; flex-direction: column; gap: 1px; }
+html.tux-mobile .tux-m-card .n { font-size: 9px; letter-spacing: 1px; color: #d9b6ec; }
+html.tux-mobile .tux-m-card .lbl { font-size: 9px; letter-spacing: 1.5px; color: #f3d9ff; }
+html.tux-mobile .tux-m-card .sc { font-size: 24px; line-height: 1.1; color: #fff; font-variant-numeric: tabular-nums; }
+html.tux-mobile .tux-m-card .cm { font-size: 11px; font-weight: 700; color: #ffe45c; }
+html.tux-mobile .tux-m-card .ht { font-size: 9px; color: #cdb8dc; letter-spacing: .4px; }
+html.tux-mobile #unified-overlay h1 { font-size: 64px; }
+html.tux-mobile #unified-overlay h2 { font-size: 24px; }
+html.tux-mobile #unified-overlay h3 { margin: 0; }
+html.tux-mobile #unified-overlay { gap: 8px; padding: 10px calc(14px + env(safe-area-inset-right)) 10px calc(14px + env(safe-area-inset-left)); box-sizing: border-box; font-size: 13px; }
+html.tux-mobile #unified-overlay p { margin: 2px 0; }
+html.tux-mobile #unified-overlay button { min-height: 40px; }
+
+/* ---------- janelas (pausa, saída, instruções) ---------- */
+html.tux-mobile .tux-control-modal { padding: calc(8px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left)); }
+html.tux-mobile .tux-dialog { max-height: 94%; padding: 16px 18px; }
+html.tux-mobile .tux-dialog:before { margin: -6px 0 10px; }
+html.tux-mobile .tux-dialog h2 { font-size: clamp(26px, 6vh, 38px); margin: 0 0 8px; }
+html.tux-mobile .tux-dialog p { font-size: 14px; line-height: 1.4; margin: 6px 0; }
+html.tux-mobile .tux-dialog button { min-height: 44px; padding: 8px 16px; font-size: 18px; }
+html.tux-mobile .tux-dialog kbd { width: 40px; height: 40px; }
+
+/* ---------- botões de toque (5 pistas) ---------- */
+.tux-pad { position: fixed; inset: 0; z-index: 1150; pointer-events: none; touch-action: none; -webkit-user-select: none; user-select: none; }
+.tux-pad-btn { position: absolute; box-sizing: border-box; pointer-events: auto; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; border-radius: 22px; border: 2px solid var(--c); background: linear-gradient(180deg, color-mix(in srgb, var(--c) 18%, #0c0714), #07040d 70%); box-shadow: inset 0 1px 0 #ffffff55, inset 0 -4px 0 #0009, 0 0 0 2px #07040dcc, 0 4px 10px #000a; transition: transform .05s, box-shadow .05s, background .05s; overflow: hidden; }
+.tux-pad-btn .tux-pad-ring { position: absolute; left: 50%; top: 50%; width: min(70%, 78px); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; border: 5px solid var(--c); background: radial-gradient(circle at 35% 30%, #ffffff66, transparent 40%), #1a1626; box-shadow: 0 0 10px color-mix(in srgb, var(--c) 55%, transparent), inset 0 0 8px #000b; }
+.tux-pad-btn .tux-pad-cap { position: absolute; left: 50%; top: 50%; width: 34%; aspect-ratio: 1; max-width: 38px; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle at 35% 30%, #ffffff55, #2b2d3d 55%, #111); }
+.tux-pad-btn .tux-pad-glow { position: absolute; inset: 0; opacity: 0; background: radial-gradient(ellipse at 50% 60%, var(--c), transparent 70%); transition: opacity .06s; }
+.tux-pad-btn.pressed { transform: translateY(3px) scale(.96); box-shadow: inset 0 3px 8px #000b, 0 0 18px var(--c), 0 0 0 2px #07040dcc; background: linear-gradient(180deg, color-mix(in srgb, var(--c) 45%, #0c0714), #0a0612 80%); }
+.tux-pad-btn.pressed .tux-pad-glow { opacity: .85; }
+.tux-pad-btn.lane0 { --c: #00e83b; } .tux-pad-btn.lane1 { --c: #ff1744; } .tux-pad-btn.lane2 { --c: #ffeb00; } .tux-pad-btn.lane3 { --c: #168cff; } .tux-pad-btn.lane4 { --c: #ff8a00; }
+
+/* ---------- aviso: gire o celular ---------- */
+.tux-rotate { position: fixed; inset: 0; z-index: 1400; display: flex; align-items: center; justify-content: center; padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); background: radial-gradient(ellipse at 50% 40%, #2b1340f2, #05020bfa 75%); touch-action: none; animation: tuxFade .25s ease-out; }
+.tux-rotate-card { width: min(420px, 90vw); box-sizing: border-box; text-align: center; padding: 22px 20px 18px; border: 2px solid #b36bdd; border-radius: 14px; background: linear-gradient(145deg, #34303b 0%, #17111e 18%, #0b0910 62%, #211629); box-shadow: inset 0 1px #fff5, 0 0 0 5px #08050dc9, 0 20px 60px #000d, 0 0 40px #9850c866; }
+.tux-rotate-card h2 { margin: 6px 0 8px; font: clamp(28px, 8vw, 40px) Bangers, Impact, sans-serif; letter-spacing: 2px; color: #f2d9ff; text-shadow: 0 2px 0 #13051d, 0 0 14px #9d49cb88; }
+.tux-rotate-card p { margin: 0 0 8px; color: #e7dcea; font-size: 15px; line-height: 1.45; }
+.tux-rotate-card small { display: block; color: #a98cba; font-size: 11px; margin-bottom: 12px; }
+.tux-rotate-back { min-height: 42px; padding: 8px 22px; font: 18px Bangers, Impact, sans-serif; letter-spacing: 1px; color: #f7edff; border: 1px solid #826493; border-bottom: 2px solid #33213e; border-radius: 5px; background: linear-gradient(165deg, #59515f, #17141d 46%, #0b0a10 53%, #302539); box-shadow: inset 0 1px #fff5, 0 3px 8px #0009; }
+.tux-rotate-phone { width: 74px; height: 74px; margin: 0 auto; animation: tuxTurn 2.4s ease-in-out infinite; transform-origin: 50% 50%; }
+.tux-rotate-phone svg { width: 100%; height: 100%; fill: none; stroke: #d5a0f6; stroke-width: 2.6; filter: drop-shadow(0 0 8px #a250c3); }
+.tux-rotate-phone .scr { fill: #7a2aa8; stroke: none; opacity: .65; }
+.tux-rotate-phone circle { fill: #d5a0f6; stroke: none; }
+@keyframes tuxTurn { 0%, 20% { transform: rotate(0); } 55%, 85% { transform: rotate(-90deg); } 100% { transform: rotate(0); } }
+@media (orientation: landscape) and (max-height: 500px) { .tux-rotate-card { padding: 12px 16px; } .tux-rotate-phone { width: 46px; height: 46px; } .tux-rotate-card h2 { font-size: 26px; } .tux-rotate-card p { font-size: 13px; margin-bottom: 4px; } }
+
+/* ---------- modal: multijogador só no PC ---------- */
+.tux-mp { position: fixed; inset: 0; z-index: 1400; align-items: center; justify-content: center; padding: calc(10px + env(safe-area-inset-top)) calc(12px + env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) calc(12px + env(safe-area-inset-left)); background: rgba(2, 1, 6, 0); backdrop-filter: blur(0); -webkit-backdrop-filter: blur(0); transition: background .25s, backdrop-filter .25s; }
+.tux-mp.open { background: rgba(2, 1, 6, .8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.tux-mp-card { width: min(460px, 100%); max-height: 100%; overflow: auto; box-sizing: border-box; text-align: center; padding: 20px 20px 18px; border: 2px solid #ad84c1; border-radius: 12px; background: linear-gradient(145deg, #34303b 0%, #17111e 16%, #0b0910 60%, #211629); box-shadow: inset 0 1px #fff5, 0 0 0 5px #08050dc9, 0 24px 70px #000d, 0 0 40px #9850c85c; opacity: 0; transform: translateY(18px) scale(.92); transition: opacity .28s ease-out, transform .32s cubic-bezier(.2, .9, .25, 1.15); }
+.tux-mp.open .tux-mp-card { opacity: 1; transform: none; }
+.tux-mp-card:before { content: ''; display: block; height: 4px; margin: -8px 0 12px; background: linear-gradient(90deg, transparent, #b47ed3, #ead4ff, #b47ed3, transparent); }
+.tux-mp-icon { width: 84px; margin: 0 auto 4px; }
+.tux-mp-icon svg { width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 0 10px #a250c3); }
+.tux-mp-icon .frame { fill: #1b1426; stroke: #d5a0f6; stroke-width: 3; }
+.tux-mp-icon .screen { fill: #3a1456; }
+.tux-mp-icon .stand { fill: #59515f; } .tux-mp-icon .base { fill: #302539; stroke: #826493; stroke-width: 1.5; }
+.tux-mp-icon .glyph { fill: #f2b8ff; animation: tuxPulse 1.8s ease-in-out infinite; transform-origin: 46px 31px; }
+@keyframes tuxPulse { 50% { transform: scale(1.25); opacity: .7; } }
+.tux-mp-card h2 { margin: 4px 0 10px; font: clamp(26px, 7vw, 36px) Bangers, Impact, sans-serif; letter-spacing: 2px; color: #f2d9ff; text-shadow: 0 2px 0 #13051d, 0 0 14px #9d49cb88; }
+.tux-mp-card p { margin: 0 0 10px; color: #e7dcea; font-size: 15px; line-height: 1.5; }
+.tux-mp-ok { min-height: 46px; min-width: 150px; padding: 10px 26px; font: 21px Bangers, Impact, sans-serif; letter-spacing: 1.5px; color: #fff; border: 1px solid #d5a0f6; border-bottom: 2px solid #33213e; border-radius: 5px; cursor: pointer; background: linear-gradient(155deg, #725084, #34213f 32%, #17121f 60%, #523061); box-shadow: inset 0 1px #ffffff77, 0 0 17px #9f50d477, 0 5px 13px #000a; }
+.tux-mp-ok:active { transform: translateY(2px) scale(.98); }
+@media (orientation: landscape) and (max-height: 500px) { .tux-mp-card { padding: 10px 16px 12px; } .tux-mp-icon { width: 52px; } .tux-mp-card h2 { margin: 2px 0 6px; font-size: 24px; } .tux-mp-card p { font-size: 13px; margin-bottom: 6px; } .tux-mp-ok { min-height: 40px; } }
+@keyframes tuxFade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .tux-rotate-phone, .tux-mp-icon .glyph { animation: none; } .tux-mp-card { transition: none; } }
